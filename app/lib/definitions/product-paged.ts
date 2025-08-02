@@ -5,5 +5,5 @@ export interface ProductPaged {
   total: number;
   totalPages: number;
   categories: { categoryId: number; count: number; name: string }[];
-  brands: { brand: string; count: number }[];
+  brands: { id: string, brand: string; count: number }[];
 }

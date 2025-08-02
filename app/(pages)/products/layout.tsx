@@ -1,4 +1,11 @@
-import { Search, ShoppingCart, User, Heart, Menu } from "lucide-react";
+import {
+  Search,
+  ShoppingCart,
+  User,
+  Heart,
+  Menu,
+  Sparkles,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -9,7 +16,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
-export default function ProductsLayout({ children }: {children: React.ReactNode}) {
+export default function ProductsLayout({ children }: { children: React.ReactNode }) {
   const categories = [
     { name: "Electronics", href: "/products/electronics" },
     { name: "Clothing", href: "/products/clothing" },
@@ -33,7 +40,7 @@ export default function ProductsLayout({ children }: {children: React.ReactNode}
             <a
               key={category.name}
               href={category.href}
-              className="text-sm hover:text-primary transition-colors py-2"
+              className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
               {category.name}
             </a>
@@ -44,31 +51,37 @@ export default function ProductsLayout({ children }: {children: React.ReactNode}
   );
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      {/* Header */}
+      <header className="sticky top-0 z-50 w-full border-b bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
         <div className="container mx-auto px-4">
-          {/* top bar */}
+          {/* Top Bar */}
           <div className="h-16 flex items-center justify-between">
-            {/* logo */}
             <div className="flex items-center space-x-4">
               <MobileNav />
-              <a href="/" className="text-2xl font-bold">
-                AiECommerce
+              <a href="/" className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  AiECommerce
+                </span>
               </a>
             </div>
 
-            {/* search  */}
+            {/* Search */}
             <div className="flex-1 max-w-md mx-4 md:mx-8">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
                 <Input
+                  type="text"
                   placeholder="Search products..."
-                  className="pl-10 pr-4"
+                  className="pl-12 pr-4 py-3 text-base rounded-full border-2 border-blue-200 focus:border-blue-500 dark:border-slate-600 dark:focus:border-blue-400"
                 />
               </div>
             </div>
 
-            {/* header */}
+            {/* Icons */}
             <div className="flex items-center space-x-2">
               <Button variant="ghost" size="icon" className="hidden sm:flex">
                 <Heart className="h-5 w-5" />
@@ -85,12 +98,15 @@ export default function ProductsLayout({ children }: {children: React.ReactNode}
             </div>
           </div>
 
-          {/* desktop navbar */}
+          {/* Desktop Nav */}
           <div className="hidden md:block border-t">
             <NavigationMenu className="py-2">
               <NavigationMenuList className="space-x-6">
                 <NavigationMenuItem>
-                  <a href="/products" className="text-sm font-medium hover:text-primary transition-colors">
+                  <a
+                    href="/products"
+                    className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors"
+                  >
                     All Products
                   </a>
                 </NavigationMenuItem>
@@ -98,14 +114,17 @@ export default function ProductsLayout({ children }: {children: React.ReactNode}
                   <NavigationMenuItem key={category.name}>
                     <a
                       href={category.href}
-                      className="text-sm font-medium hover:text-primary transition-colors"
+                      className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors"
                     >
                       {category.name}
                     </a>
                   </NavigationMenuItem>
                 ))}
                 <NavigationMenuItem>
-                  <a href="/products/sale" className="text-sm font-medium text-red-600 hover:text-red-700 transition-colors">
+                  <a
+                    href="/products/sale"
+                    className="text-sm font-medium text-red-600 hover:text-red-700 transition-colors"
+                  >
                     Sale
                   </a>
                 </NavigationMenuItem>
@@ -115,59 +134,74 @@ export default function ProductsLayout({ children }: {children: React.ReactNode}
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-3 border-b bg-muted/30">
-        <nav className="flex items-center space-x-2 text-sm text-muted-foreground">
-          <a href="/" className="hover:text-foreground transition-colors">Home</a>
+      {/* Breadcrumb */}
+      <div className="container mx-auto px-4 py-3 border-b bg-white/50 dark:bg-slate-800/50">
+        <nav className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
+          <a href="/" className="hover:text-slate-700 dark:hover:text-white transition-colors">
+            Home
+          </a>
           <span>/</span>
-          <a href="/products" className="hover:text-foreground transition-colors">Products</a>
+          <a href="/products" className="hover:text-slate-700 dark:hover:text-white transition-colors">
+            Products
+          </a>
         </nav>
       </div>
 
-      <main className="flex-1">
-        {children}
-      </main>
+      {/* Page Content */}
+      <main className="flex-1">{children}</main>
 
-      <footer className="border-t bg-muted/50 mt-16">
-        <div className="container mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      {/* Footer */}
+      <footer className="bg-slate-900 text-white mt-16">
+        <div className="container mx-auto px-4 py-12">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-xl font-bold">AiECommerce</span>
+              </div>
+              <p className="text-slate-400">
+                The future of intelligent e-commerce, powered by advanced AI
+                technology.
+              </p>
+            </div>
+
             <div>
               <h3 className="font-semibold mb-4">Customer Service</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/help" className="hover:text-foreground transition-colors">Help Center</a></li>
-                <li><a href="/returns" className="hover:text-foreground transition-colors">Returns</a></li>
-                <li><a href="/shipping" className="hover:text-foreground transition-colors">Shipping Info</a></li>
-                <li><a href="/contact" className="hover:text-foreground transition-colors">Contact Us</a></li>
+              <ul className="space-y-2 text-sm text-slate-400">
+                <li><a href="/help" className="hover:text-white transition-colors">Help Center</a></li>
+                <li><a href="/returns" className="hover:text-white transition-colors">Returns</a></li>
+                <li><a href="/shipping" className="hover:text-white transition-colors">Shipping Info</a></li>
+                <li><a href="/contact" className="hover:text-white transition-colors">Contact Us</a></li>
               </ul>
             </div>
+
             <div>
               <h3 className="font-semibold mb-4">Account</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/account" className="hover:text-foreground transition-colors">My Account</a></li>
-                <li><a href="/orders" className="hover:text-foreground transition-colors">Order History</a></li>
-                <li><a href="/wishlist" className="hover:text-foreground transition-colors">Wishlist</a></li>
+              <ul className="space-y-2 text-sm text-slate-400">
+                <li><a href="/account" className="hover:text-white transition-colors">My Account</a></li>
+                <li><a href="/orders" className="hover:text-white transition-colors">Order History</a></li>
+                <li><a href="/wishlist" className="hover:text-white transition-colors">Wishlist</a></li>
               </ul>
             </div>
+
             <div>
               <h3 className="font-semibold mb-4">Company</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="/about" className="hover:text-foreground transition-colors">About Us</a></li>
-                <li><a href="/careers" className="hover:text-foreground transition-colors">Careers</a></li>
-                <li><a href="/press" className="hover:text-foreground transition-colors">Press</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Connect</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition-colors">Newsletter</a></li>
-                <li><a href="#" className="hover:text-foreground transition-colors">Social Media</a></li>
+              <ul className="space-y-2 text-sm text-slate-400">
+                <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
+                <li><a href="/careers" className="hover:text-white transition-colors">Careers</a></li>
+                <li><a href="/press" className="hover:text-white transition-colors">Press</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2025 Aiecommerce. All rights reserved.</p>
+
+          <div className="border-t border-slate-800 pt-8 mt-8 text-center text-slate-400">
+            <p>&copy; 2025 AiECommerce. All rights reserved.</p>
           </div>
         </div>
       </footer>
     </div>
   );
 }
+

@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import { Prisma, Product } from "@prisma/client";
 import { Filters } from "../definitions/filters";
 import { ProductPaged } from "../definitions/product-paged";
+import { randomUUID } from "crypto";
 
 export async function getProducts(): Promise<Product[]> {
   return await prisma.product.findMany();
@@ -62,22 +63,20 @@ export async function getProductsByFilters(
 
 
   const allCategories = await prisma.category.findMany({
-    where: {
-      id: {
-        in: products.map((p) => p.categoryId),
-      },
-    },
     select: {
       id: true,
       name: true,
     },
+    distinct: ["id"]
   });
 
-  const brandGroups = await prisma.product.groupBy({
-    by: ["brand"],
-    _count: { _all: true },
-    where,
-  });
+  // brands should has its own table....
+  const allBrands = await prisma.product.findMany({
+    select: {
+      brand: true,
+    },
+    distinct: ["brand"],
+  })
 
   const categoriesResult = allCategories.map((g) => ({
     categoryId: g.id,
@@ -85,9 +84,11 @@ export async function getProductsByFilters(
     name: g.name,
   }));
 
-  const brandsResult = brandGroups.map((g) => ({
+  const brandsResult = allBrands.map((g) => ({
+    // god forgive me
+    id: randomUUID(),
     brand: g.brand,
-    count: g._count._all,
+    count: allBrands.length,
   }));
 
 

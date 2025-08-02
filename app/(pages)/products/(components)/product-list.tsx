@@ -1,8 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import { Product } from "@prisma/client";
 import { useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect, useMemo, useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Grid2X2, List } from "lucide-react";
 
 interface ProductListProps {
   products: Product[];
@@ -11,7 +14,6 @@ interface ProductListProps {
   totalPages: number;
 }
 
-// TODO: grid and view could be different routes with different layouts. Should lead to better SEO.
 export default function ProductList({
   products,
   total,
@@ -20,58 +22,58 @@ export default function ProductList({
 }: ProductListProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const viewFromUrl = searchParams.get("view") || "grid";
 
+  const viewFromUrl = searchParams.get("view") || "grid";
   const [isGridView, setIsGridView] = useState(viewFromUrl === "grid");
+
+  const searchParamsString = useMemo(() => searchParams.toString(), [searchParams]);
 
   useEffect(() => {
     const currentView = isGridView ? "grid" : "list";
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(searchParamsString);
     if (params.get("view") !== currentView) {
       params.set("view", currentView);
-      router.replace(`${window.location.pathname}?${params.toString()}`, {});
+      router.replace(`${window.location.pathname}?${params.toString()}`);
     }
-  }, [isGridView, router]);
-
-  const renderProduct = (product: Product) => (
-    <div key={product.id} className="border rounded p-4">
-      <h3 className="font-semibold">{product.name}</h3>
-      <p className="text-sm text-muted-foreground">{product.brand}</p>
-      <p>${product.price}</p>
-    </div>
-  );
+  }, [isGridView, router, searchParamsString]);
 
   const goToPage = (pageNumber: number) => {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(searchParamsString);
     params.set("page", pageNumber.toString());
     router.push(`${window.location.pathname}?${params.toString()}`);
   };
 
+  const renderProduct = (product: Product) => (
+    <Card key={product.id} className="hover:shadow-lg transition-shadow duration-200">
+      <CardContent className="p-4 space-y-2">
+        <h3 className="text-lg font-semibold tracking-tight">{product.name}</h3>
+        <p className="text-sm text-muted-foreground">{product.brand}</p>
+        <p className="text-base font-medium text-primary">${product.price}</p>
+      </CardContent>
+    </Card>
+  );
+
   return (
-    <div>
-      <div className="mb-4 flex justify-between items-center">
-        <div>
-          <button
-            className={`px-3 py-1 rounded-l border ${
-              isGridView ? "bg-blue-600 text-white" : "bg-white"
-            }`}
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <div className="flex space-x-2">
+          <Button
+            variant={isGridView ? "default" : "outline"}
             onClick={() => setIsGridView(true)}
+            size="icon"
           >
-            Grid
-          </button>
-          <button
-            className={`px-3 py-1 rounded-r border ${
-              !isGridView ? "bg-blue-600 text-white" : "bg-white"
-            }`}
+            <Grid2X2 className="w-4 h-4" />
+          </Button>
+          <Button
+            variant={!isGridView ? "default" : "outline"}
             onClick={() => setIsGridView(false)}
+            size="icon"
           >
-            List
-          </button>
+            <List className="w-4 h-4" />
+          </Button>
         </div>
-        <div>
-          <span>
-            Page {page} of {totalPages} ({total} items)
-          </span>
+        <div className="text-sm text-muted-foreground">
+          Page {page} of {totalPages} ({total} items)
         </div>
       </div>
 
@@ -85,38 +87,41 @@ export default function ProductList({
         {products.length > 0 ? (
           products.map(renderProduct)
         ) : (
-          <p>No products found.</p>
+          <p className="text-muted-foreground text-center py-10">
+            No products found.
+          </p>
         )}
       </div>
 
-      {/* Pagination Controls */}
-      <div className="mt-6 flex justify-center space-x-2">
-        <button
+      <div className="mt-6 flex justify-center gap-2 flex-wrap">
+        <Button
           onClick={() => goToPage(page - 1)}
           disabled={page <= 1}
-          className="px-3 py-1 border rounded disabled:opacity-50"
+          variant="outline"
         >
           Previous
-        </button>
-        {[...Array(totalPages).keys()].map((idx) => (
-          <button
-            key={idx + 1}
-            onClick={() => goToPage(idx + 1)}
-            className={`px-3 py-1 border rounded ${
-              page === idx + 1 ? "bg-blue-600 text-white" : ""
-            }`}
-          >
-            {idx + 1}
-          </button>
-        ))}
-        <button
+        </Button>
+        {[...Array(totalPages)].map((_, idx) => {
+          const pageNum = idx + 1;
+          return (
+            <Button
+              key={pageNum}
+              onClick={() => goToPage(pageNum)}
+              variant={pageNum === page ? "default" : "outline"}
+            >
+              {pageNum}
+            </Button>
+          );
+        })}
+        <Button
           onClick={() => goToPage(page + 1)}
           disabled={page >= totalPages}
-          className="px-3 py-1 border rounded disabled:opacity-50"
+          variant="outline"
         >
           Next
-        </button>
+        </Button>
       </div>
     </div>
   );
 }
+

@@ -11,8 +11,9 @@ interface ProductsPageProps {
 }
 
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+  // hack to get searchParams from url. Next bitches about this all the time and idk why
   searchParams = await searchParams;
-  const page = parseInt((searchParams?.page as string) || "1", 10);
+    const page = parseInt((searchParams?.page as string) || "1", 10);
 
   const filters: Filters = {
     categories: parseNumberArray(searchParams?.categories),
@@ -27,14 +28,19 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   const { products, total, totalPages, categories, brands } =
     await getProductsByFilters(filters);
 
-
   return (
-    <div className="container mx-auto px-4 py-6">
-      <div className="flex gap-6">
-        <aside className="hidden lg:block w-80 shrink-0">
+    <div className="container mx-auto px-4 py-12">
+      <div className="flex flex-col lg:flex-row gap-8">
+        {/* Filters Sidebar */}
+        <aside className="w-full lg:w-80 shrink-0">
           <ProductFilters categories={categories} brands={brands} />
         </aside>
+
+        {/* Product List Section */}
         <main className="flex-1 space-y-6">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Browse Products
+          </h1>
           <ProductList
             products={products}
             total={total}
@@ -47,13 +53,11 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   );
 }
 
+// --- Helpers ---
 function parseNumberArray(value?: string | string[]): number[] {
   if (!value) return [];
   if (Array.isArray(value)) return value.map(Number).filter((n) => !isNaN(n));
-  return value
-    .split(",")
-    .map(Number)
-    .filter((n) => !isNaN(n));
+  return value.split(",").map(Number).filter((n) => !isNaN(n));
 }
 
 function parseStringArray(value?: string | string[]): string[] {
