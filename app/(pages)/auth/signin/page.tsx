@@ -3,7 +3,6 @@ import { useActionState } from "react";
 import { signIn } from "@/app/actions/authentication/auth";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
   CardAction,
   CardContent,
   CardDescription,
@@ -21,7 +20,6 @@ export default function SigninPage() {
 
   return (
     <form action={action}>
-      <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>
           <CardDescription>
@@ -33,9 +31,9 @@ export default function SigninPage() {
         </CardHeader>
         <CardContent>
           {state?.message && (
-            <Alert className="mb-4" variant="destructive">
+            <Alert className="mb-4 mt-4" variant="destructive">
               <AlertCircleIcon className="h-5 w-5 mr-2" />
-              <AlertTitle>Authenticaton error</AlertTitle>
+              <AlertTitle>Authentication error</AlertTitle>
               <AlertDescription>{state?.message}</AlertDescription>
             </Alert>
           )}
@@ -60,7 +58,13 @@ export default function SigninPage() {
                   Forgot your password?
                 </a>
               </div>
-              <Input id="password" name="password" type="password" required />
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="••••••••••"
+                required
+              />
             </div>
           </div>
         </CardContent>
@@ -72,7 +76,6 @@ export default function SigninPage() {
             Login with Google
           </Button>
         </CardFooter>
-      </Card>
     </form>
   );
 }

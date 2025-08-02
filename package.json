@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "prisma": {
+    "seed": "ts-node -r tsconfig-paths/register --compiler-options {\"module\":\"esnext\"} prisma/seed.ts"
+  },
   "dependencies": {
     "@prisma/client": "^6.13.0",
     "@radix-ui/react-label": "^2.1.7",
@@ -22,6 +25,7 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "tailwind-merge": "^3.3.1",
+    "ts-node": "^10.9.2",
     "zod": "^4.0.14"
   },
   "devDependencies": {
@@ -34,6 +38,7 @@
     "eslint-config-next": "15.4.5",
     "prisma": "^6.13.0",
     "tailwindcss": "^4",
+    "tsconfig-paths": "^4.2.0",
     "tsx": "^4.20.3",
     "tw-animate-css": "^1.3.6",
     "typescript": "^5"
