@@ -29,7 +29,13 @@ export default function SignupPage() {
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
               <Label htmlFor="name">Name</Label>
-              <Input id="name" name="name" type="text" placeholder="John Doe" required />
+              <Input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="John Doe"
+                required
+              />
             </div>
             {state?.errors?.name && (
               <Alert variant="destructive">
@@ -43,7 +49,13 @@ export default function SignupPage() {
             )}
             <div className="grid gap-2">
               <Label htmlFor="username">Username</Label>
-              <Input id="username" name="username" type="text" placeholder="johndoe" required />
+              <Input
+                id="username"
+                name="username"
+                type="text"
+                placeholder="johndoe"
+                required
+              />
             </div>
             {state?.errors?.username && (
               <Alert variant="destructive">
@@ -85,7 +97,13 @@ export default function SignupPage() {
                   Forgot your password?
                 </a>
               </div>
-              <Input id="password" name="password" type="password" placeholder="••••••••••" required />
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="••••••••••"
+                required
+              />
             </div>
             {state?.errors?.password && (
               <Alert variant="destructive">
