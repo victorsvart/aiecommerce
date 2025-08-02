@@ -41,7 +41,6 @@ export default function ProductFilters({
   ]);
   const [sortBy, setSortBy] = useState(initialSortBy);
 
-  // Update URL query on filter change
   useEffect(() => {
     const params = new URLSearchParams();
 

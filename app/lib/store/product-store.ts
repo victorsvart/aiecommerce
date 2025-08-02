@@ -60,10 +60,17 @@ export async function getProductsByFilters(
     take: limit,
   });
 
-  const categoryGroups = await prisma.product.groupBy({
-    by: ["categoryId", "name"],
-    _count: { _all: true },
-    where,
+
+  const allCategories = await prisma.category.findMany({
+    where: {
+      id: {
+        in: products.map((p) => p.categoryId),
+      },
+    },
+    select: {
+      id: true,
+      name: true,
+    },
   });
 
   const brandGroups = await prisma.product.groupBy({
@@ -72,9 +79,9 @@ export async function getProductsByFilters(
     where,
   });
 
-  const categoriesResult = categoryGroups.map((g) => ({
-    categoryId: g.categoryId,
-    count: g._count._all,
+  const categoriesResult = allCategories.map((g) => ({
+    categoryId: g.id,
+    count: allCategories.length,
     name: g.name,
   }));
 
@@ -82,6 +89,8 @@ export async function getProductsByFilters(
     brand: g.brand,
     count: g._count._all,
   }));
+
+  console.log(categoriesResult)
 
   return {
     products,

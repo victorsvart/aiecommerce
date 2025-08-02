@@ -27,6 +27,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   const { products, total, totalPages, categories, brands } =
     await getProductsByFilters(filters);
 
+
   return (
     <div className="container mx-auto px-4 py-6">
       <div className="flex gap-6">
