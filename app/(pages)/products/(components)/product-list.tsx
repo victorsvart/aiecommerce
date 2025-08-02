@@ -11,6 +11,7 @@ interface ProductListProps {
   totalPages: number;
 }
 
+// TODO: grid and view could be different routes with different layouts. Should lead to better SEO.
 export default function ProductList({
   products,
   total,

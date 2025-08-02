@@ -18,6 +18,7 @@ interface ProductFiltersProps {
   brands: Brand[];
 }
 
+// TODO: SEO could be better here
 export default function ProductFilters({
   categories,
   brands,

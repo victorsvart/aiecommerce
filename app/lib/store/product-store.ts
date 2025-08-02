@@ -90,7 +90,6 @@ export async function getProductsByFilters(
     count: g._count._all,
   }));
 
-  console.log(categoriesResult)
 
   return {
     products,
