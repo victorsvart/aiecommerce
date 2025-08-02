@@ -1,16 +1,29 @@
-export async function getProducts() {
-  return [
-    {
-      id: 1,
-      name: "Product 1",
-      price: 100,
-      description: "This is a product",
+import prisma from "@/lib/prisma";
+import { Prisma, Product } from "@prisma/client";
+
+export async function getProducts(): Promise<Product[> {
+  return await prisma.product.findMany();
+}
+
+export async function getProduct(id: number): Promise<Product | null> {
+  return await prisma.product.findUnique({
+    where: {
+      id: id,
     },
-    {
-      id: 2,
-      name: "Product 2",
-      price: 200,
-      description: "This is another product",
+  });
+}
+
+export async function createProduct(product: Prisma.ProductCreateInput): Promise<Product> {
+  return await prisma.product.create({
+    data: product,
+  });
+}
+
+export async function updateProduct(id: number, product: Prisma.ProductUpdateInput): Promise<Product> {
+  return await prisma.product.update({
+    where: {
+      id: id,
     },
-  ];
+    data: product,
+  });
 }
