@@ -1,0 +1,243 @@
+[
+  {
+    "name": "Wireless Mouse",
+    "description": "Ergonomic wireless mouse with adjustable DPI and silent clicks.",
+    "price": 24.99,
+    "image": "/products/wireless-mouse.jpg",
+    "categoryId": 1,
+    "brand": "Logitech"
+  },
+  {
+    "name": "Mechanical Keyboard",
+    "description": "RGB backlit mechanical keyboard with blue switches.",
+    "price": 79.99,
+    "image": "/products/mechanical-keyboard.jpg",
+    "categoryId": 1,
+    "brand": "Corsair"
+  },
+  {
+    "name": "USB-C Hub",
+    "description": "Multi-port USB-C hub with HDMI, USB 3.0, and SD card slots.",
+    "price": 34.5,
+    "image": "/products/usb-c-hub.jpg",
+    "categoryId": 2,
+    "brand": "Anker"
+  },
+  {
+    "name": "Noise Cancelling Headphones",
+    "description": "Over-ear headphones with active noise cancellation and Bluetooth.",
+    "price": 129.99,
+    "image": "/products/noise-cancelling-headphones.jpg",
+    "categoryId": 3,
+    "brand": "Sony"
+  },
+  {
+    "name": "4K Monitor",
+    "description": "27-inch UHD monitor with IPS panel and 99% sRGB coverage.",
+    "price": 349.99,
+    "image": "/products/4k-monitor.jpg",
+    "categoryId": 4,
+    "brand": "Dell"
+  },
+  {
+    "name": "Portable SSD 1TB",
+    "description": "High-speed portable SSD with USB 3.2 interface.",
+    "price": 119.0,
+    "image": "/products/portable-ssd.jpg",
+    "categoryId": 5,
+    "brand": "Samsung"
+  },
+  {
+    "name": "Smartwatch",
+    "description": "Fitness-focused smartwatch with heart rate and sleep tracking.",
+    "price": 89.99,
+    "image": "/products/smartwatch.jpg",
+    "categoryId": 6,
+    "brand": "Fitbit"
+  },
+  {
+    "name": "Gaming Chair",
+    "description": "Ergonomic gaming chair with lumbar support and adjustable height.",
+    "price": 199.95,
+    "image": "/products/gaming-chair.jpg",
+    "categoryId": 7,
+    "brand": "DXRacer"
+  },
+  {
+    "name": "Webcam 1080p",
+    "description": "Full HD webcam with stereo microphones and privacy cover.",
+    "price": 49.99,
+    "image": "/products/webcam.jpg",
+    "categoryId": 2,
+    "brand": "Logitech"
+  },
+  {
+    "name": "Bluetooth Speaker",
+    "description": "Portable Bluetooth speaker with waterproof design.",
+    "price": 39.99,
+    "image": "/products/bluetooth-speaker.jpg",
+    "categoryId": 3,
+    "brand": "JBL"
+  },
+  {
+    "name": "Laptop Stand",
+    "description": "Adjustable aluminum laptop stand for desk setup.",
+    "price": 29.5,
+    "image": "/products/laptop-stand.jpg",
+    "categoryId": 7,
+    "brand": "Rain Design"
+  },
+  {
+    "name": "Wireless Charger",
+    "description": "10W fast wireless charger compatible with all Qi-enabled devices.",
+    "price": 19.99,
+    "image": "/products/wireless-charger.jpg",
+    "categoryId": 12,
+    "brand": "Anker"
+  },
+  {
+    "name": "LED Desk Lamp",
+    "description": "Touch-sensitive LED lamp with brightness control.",
+    "price": 25.99,
+    "image": "/products/desk-lamp.jpg",
+    "categoryId": 7,
+    "brand": "BenQ"
+  },
+  {
+    "name": "Smart Light Bulb",
+    "description": "Color-changing smart bulb controllable via app or voice.",
+    "price": 14.75,
+    "image": "/products/smart-light-bulb.jpg",
+    "categoryId": 8,
+    "brand": "Philips Hue"
+  },
+  {
+    "name": "Backpack for Laptops",
+    "description": "Water-resistant backpack with USB charging port.",
+    "price": 44.0,
+    "image": "/products/laptop-backpack.jpg",
+    "categoryId": 9,
+    "brand": "Timbuk2"
+  },
+  {
+    "name": "Graphic Tablet",
+    "description": "Compact drawing tablet for beginners and professionals.",
+    "price": 59.99,
+    "image": "/products/graphic-tablet.jpg",
+    "categoryId": 2,
+    "brand": "Wacom"
+  },
+  {
+    "name": "Gaming Mouse Pad",
+    "description": "Extended mouse pad with stitched edges and RGB lighting.",
+    "price": 19.0,
+    "image": "/products/gaming-mouse-pad.jpg",
+    "categoryId": 1,
+    "brand": "Razer"
+  },
+  {
+    "name": "Smartphone Gimbal",
+    "description": "3-axis stabilizer gimbal for smooth video shooting.",
+    "price": 98.0,
+    "image": "/products/smartphone-gimbal.jpg",
+    "categoryId": 10,
+    "brand": "DJI"
+  },
+  {
+    "name": "Wireless Earbuds",
+    "description": "True wireless earbuds with charging case and noise isolation.",
+    "price": 59.95,
+    "image": "/products/wireless-earbuds.jpg",
+    "categoryId": 3,
+    "brand": "Apple"
+  },
+  {
+    "name": "Streaming Microphone",
+    "description": "USB condenser microphone with adjustable stand.",
+    "price": 74.99,
+    "image": "/products/streaming-microphone.jpg",
+    "categoryId": 3,
+    "brand": "Blue"
+  },
+  {
+    "name": "USB Desk Fan",
+    "description": "Quiet and compact USB-powered desk fan.",
+    "price": 12.5,
+    "image": "/products/usb-desk-fan.jpg",
+    "categoryId": 7,
+    "brand": "OPOLAR"
+  },
+  {
+    "name": "Monitor Arm",
+    "description": "Gas spring monitor arm for adjustable screen positioning.",
+    "price": 45.0,
+    "image": "/products/monitor-arm.jpg",
+    "categoryId": 7,
+    "brand": "Ergotron"
+  },
+  {
+    "name": "Ergonomic Footrest",
+    "description": "Adjustable footrest for improved posture at desk.",
+    "price": 22.49,
+    "image": "/products/footrest.jpg",
+    "categoryId": 7,
+    "brand": "Fellowes"
+  },
+  {
+    "name": "Mini Projector",
+    "description": "Portable mini projector with HDMI and USB input.",
+    "price": 89.0,
+    "image": "/products/mini-projector.jpg",
+    "categoryId": 11,
+    "brand": "Anker"
+  },
+  {
+    "name": "Smart Plug",
+    "description": "Wi-Fi smart plug compatible with Alexa and Google Assistant.",
+    "price": 11.99,
+    "image": "/products/smart-plug.jpg",
+    "categoryId": 8,
+    "brand": "TP-Link"
+  },
+  {
+    "name": "Cable Organizer",
+    "description": "Silicone cable management clips for desk and home.",
+    "price": 6.99,
+    "image": "/products/cable-organizer.jpg",
+    "categoryId": 1,
+    "brand": "Bluelounge"
+  },
+  {
+    "name": "Foldable Laptop Table",
+    "description": "Portable and adjustable table for laptop and study use.",
+    "price": 34.0,
+    "image": "/products/laptop-table.jpg",
+    "categoryId": 7,
+    "brand": "HUANUO"
+  },
+  {
+    "name": "Wi-Fi Range Extender",
+    "description": "Boost your Wi-Fi signal with this compact extender.",
+    "price": 27.5,
+    "image": "/products/wifi-extender.jpg",
+    "categoryId": 13,
+    "brand": "Netgear"
+  },
+  {
+    "name": "Streaming Stick",
+    "description": "4K streaming media player with voice remote.",
+    "price": 49.0,
+    "image": "/products/streaming-stick.jpg",
+    "categoryId": 11,
+    "brand": "Amazon Fire"
+  },
+  {
+    "name": "Rechargeable Battery Pack",
+    "description": "High-capacity USB power bank with fast charging.",
+    "price": 38.99,
+    "image": "/products/power-bank.jpg",
+    "categoryId": 12,
+    "brand": "RAVPower"
+  }
+]
+

@@ -1,9 +1,28 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Search, Sparkles, ShoppingCart, Zap, Star, TrendingUp, Shield, Truck, ArrowRight, Bot, Users } from "lucide-react";
+import {
+  Search,
+  Sparkles,
+  ShoppingCart,
+  Zap,
+  Star,
+  TrendingUp,
+  Shield,
+  Truck,
+  ArrowRight,
+  Bot,
+  Users,
+} from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -20,13 +39,22 @@ export default function Home() {
             </span>
           </div>
           <nav className="hidden md:flex items-center gap-6">
-            <a href="#" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors">
+            <a
+              href="#"
+              className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors"
+            >
               Categories
             </a>
-            <a href="#" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors">
+            <a
+              href="#"
+              className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors"
+            >
               Deals
             </a>
-            <a href="#" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors">
+            <a
+              href="#"
+              className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors"
+            >
               About
             </a>
             <Button variant="outline" size="sm">
@@ -48,8 +76,9 @@ export default function Home() {
             Shop Smarter with AI
           </h1>
           <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto">
-            Discover millions of products with our intelligent search. Get personalized recommendations,
-            compare prices instantly, and find exactly what you need.
+            Discover millions of products with our intelligent search. Get
+            personalized recommendations, compare prices instantly, and find
+            exactly what you need.
           </p>
 
           {/* AI Search Bar */}
@@ -70,14 +99,18 @@ export default function Home() {
             <Alert className="mt-4 border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-950">
               <Zap className="h-4 w-4" />
               <AlertDescription>
-                Try asking: "Best laptop for college students" or "Eco-friendly kitchen gadgets"
+                Try asking: "Best laptop for college students" or "Eco-friendly
+                kitchen gadgets"
               </AlertDescription>
             </Alert>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8">
-              Start Shopping
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8"
+            >
+              <Link href="/products">Start Shopping</Link>
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
             <Button variant="outline" size="lg">
@@ -90,9 +123,12 @@ export default function Home() {
       {/* Features Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose SmartShop AI?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Why Choose SmartShop AI?
+          </h2>
           <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            Experience the future of online shopping with our cutting-edge AI technology
+            Experience the future of online shopping with our cutting-edge AI
+            technology
           </p>
         </div>
 
@@ -104,7 +140,8 @@ export default function Home() {
               </div>
               <CardTitle>AI-Powered Search</CardTitle>
               <CardDescription>
-                Natural language search that understands context, preferences, and intent
+                Natural language search that understands context, preferences,
+                and intent
               </CardDescription>
             </CardHeader>
           </Card>
@@ -116,7 +153,8 @@ export default function Home() {
               </div>
               <CardTitle>Smart Recommendations</CardTitle>
               <CardDescription>
-                Personalized product suggestions based on your behavior and preferences
+                Personalized product suggestions based on your behavior and
+                preferences
               </CardDescription>
             </CardHeader>
           </Card>
@@ -128,7 +166,8 @@ export default function Home() {
               </div>
               <CardTitle>Instant Comparison</CardTitle>
               <CardDescription>
-                AI automatically compares prices, features, and reviews across millions of products
+                AI automatically compares prices, features, and reviews across
+                millions of products
               </CardDescription>
             </CardHeader>
           </Card>
@@ -138,7 +177,9 @@ export default function Home() {
       {/* Popular Categories */}
       <section className="container mx-auto px-4 py-16 bg-white/50 dark:bg-slate-800/50">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Popular Categories</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Popular Categories
+          </h2>
           <p className="text-slate-600 dark:text-slate-300">
             Explore millions of products across all categories
           </p>
@@ -155,13 +196,18 @@ export default function Home() {
             { name: "Automotive", count: "290K", icon: "🚗" },
             { name: "Toys", count: "180K", icon: "🧸" },
           ].map((category) => (
-            <Card key={category.name} className="text-center hover:shadow-lg transition-shadow cursor-pointer group">
+            <Card
+              key={category.name}
+              className="text-center hover:shadow-lg transition-shadow cursor-pointer group"
+            >
               <CardContent className="p-6">
                 <div className="text-4xl mb-2 group-hover:scale-110 transition-transform">
                   {category.icon}
                 </div>
                 <h3 className="font-semibold mb-1">{category.name}</h3>
-                <p className="text-sm text-slate-500">{category.count} products</p>
+                <p className="text-sm text-slate-500">
+                  {category.count} products
+                </p>
               </CardContent>
             </Card>
           ))}
@@ -221,14 +267,23 @@ export default function Home() {
               Ready to Experience AI Shopping?
             </h2>
             <p className="text-xl mb-8 text-blue-100">
-              Join millions of smart shoppers who save time and money with our AI
+              Join millions of smart shoppers who save time and money with our
+              AI
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" className="bg-white text-blue-600 hover:bg-blue-50">
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-white text-blue-600 hover:bg-blue-50"
+              >
                 Get Started Free
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-blue-600"
+              >
                 Learn More
               </Button>
             </div>
@@ -248,37 +303,86 @@ export default function Home() {
                 <span className="text-xl font-bold">AiECommerce</span>
               </div>
               <p className="text-slate-400">
-                The future of intelligent e-commerce, powered by advanced AI technology.
+                The future of intelligent e-commerce, powered by advanced AI
+                technology.
               </p>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Shop</h3>
               <ul className="space-y-2 text-slate-400">
-                <li><a href="#" className="hover:text-white transition-colors">All Categories</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Best Sellers</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">New Arrivals</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Deals</a></li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    All Categories
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Best Sellers
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    New Arrivals
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Deals
+                  </a>
+                </li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Support</h3>
               <ul className="space-y-2 text-slate-400">
-                <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Returns</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Shipping Info</a></li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Help Center
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Contact Us
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Returns
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Shipping Info
+                  </a>
+                </li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Company</h3>
               <ul className="space-y-2 text-slate-400">
-                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Careers
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Terms of Service
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
