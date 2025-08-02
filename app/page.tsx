@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Search, Sparkles, ShoppingCart, Zap, Star, TrendingUp, Shield, Truck, ArrowRight, Bot, Users } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -77,7 +78,9 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8">
+              <Link href="/products">
               Start Shopping
+              </Link>
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
             <Button variant="outline" size="lg">
