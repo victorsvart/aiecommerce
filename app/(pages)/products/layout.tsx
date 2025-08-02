@@ -53,7 +53,7 @@ export default function ProductsLayout({ children }: {children: React.ReactNode}
             <div className="flex items-center space-x-4">
               <MobileNav />
               <a href="/" className="text-2xl font-bold">
-                Store
+                AiECommerce
               </a>
             </div>
 

@@ -34,6 +34,7 @@ export default function ProductFilters({
 
   const [selectedCategories, setSelectedCategories] =
     useState<number[]>(initialCategories);
+
   const [selectedBrands, setSelectedBrands] = useState<string[]>(initialBrands);
   const [priceRange, setPriceRange] = useState<[number, number]>([
     initialMin,

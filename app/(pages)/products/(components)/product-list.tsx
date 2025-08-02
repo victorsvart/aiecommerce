@@ -7,8 +7,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 interface ProductListProps {
   products: Product[];
   total: number;
-  isGridView: boolean;
-  setIsGridView: React.Dispatch<React.SetStateAction<boolean>>;
   page: number;
   totalPages: number;
 }
@@ -33,6 +31,7 @@ export default function ProductList({
       router.replace(`${window.location.pathname}?${params.toString()}`, {});
     }
   }, [isGridView, router]);
+
   const renderProduct = (product: Product) => (
     <div key={product.id} className="border rounded p-4">
       <h3 className="font-semibold">{product.name}</h3>
@@ -46,6 +45,7 @@ export default function ProductList({
     params.set("page", pageNumber.toString());
     router.push(`${window.location.pathname}?${params.toString()}`);
   };
+
   return (
     <div>
       <div className="mb-4 flex justify-between items-center">
