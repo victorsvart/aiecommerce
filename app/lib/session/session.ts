@@ -25,7 +25,7 @@ export async function createSession(userId: number): Promise<void> {
     path: "/",
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
-    maxAge: 3600 * 1000,
+    maxAge: 3600, // seconds (not ms)
   });
 }
 
@@ -42,9 +42,18 @@ export async function decrypt(token: string | undefined = "") {
     const payload = await jwtVerify(token, ENCODED_SECRET_KEY, {
       algorithms: ["HS256"],
     });
-
     return payload;
   } catch (e) {
-    console.log(e);
+    console.log("JWT Decrypt Error:", e);
+    return null;
   }
 }
+
+export async function isAuthenticated(): Promise<boolean> {
+  const token = (await cookies()).get("session")?.value;
+  if (!token) return false;
+
+  const session = await decrypt(token);
+  return !!session?.payload?.userId;
+}
+
