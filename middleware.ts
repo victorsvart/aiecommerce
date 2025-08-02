@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { decrypt } from "./app/lib/session/session";
 
-const protectedRoutes = ["/"];
+const protectedRoutes = ["/", "/products"];
 const publicRoutes = ["/auth/signin", "/auth/signup"];
 
 // copied from nextjs's docs for fast dev | TODO: barely reviewed, should check it out again

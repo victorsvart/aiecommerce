@@ -1,16 +1,45 @@
-import { Prisma, PrismaClient } from "@prisma/client";
+import { Prisma, PrismaClient, Product } from "@prisma/client";
 import bcrypt from "bcrypt";
 import fs from "fs";
 
 const prisma = new PrismaClient();
 const dataFolderPath = "./prisma/seedData/";
 
+async function seedCategory() {
+  try {
+    const data = fs.readFileSync(dataFolderPath + "categories.json", "utf8");
+    const categories: Prisma.CategoryCreateInput[] = JSON.parse(data);
+
+    for (const category of categories) {
+      const newCategory = await prisma.category.upsert({
+        where: { name: category.name },
+        update: {},
+        create: {
+          name: category.name,
+        },
+      });
+      console.log(`Category ${newCategory.name} created!`);
+    }
+  } catch (err) {
+    throw err;
+  }
+}
+
 async function seedProduct() {
   try {
     const data = fs.readFileSync(dataFolderPath + "products.json", "utf8");
-    const products: Prisma.ProductCreateInput[] = JSON.parse(data);
+    const products: Product[] = JSON.parse(data);
 
     for (const product of products) {
+      const category = await prisma.category.findUnique({
+        where: { id: product.categoryId },
+      });
+
+      if (!category) {
+        console.warn(`Category ID ${product.categoryId} not found. Skipping product: ${product.name}`);
+        continue;
+      }
+
       const newProduct = await prisma.product.upsert({
         where: { image: product.image },
         update: {},
@@ -18,9 +47,14 @@ async function seedProduct() {
           name: product.name,
           description: product.description,
           price: product.price,
+          brand: product.brand,
           image: product.image,
+          category: {
+            connect: { id: category.id },
+          },
         },
       });
+
       console.log(`Product ${newProduct.name} created!`);
     }
   } catch (err) {
@@ -53,6 +87,7 @@ async function seedUser() {
 export async function main() {
   try {
     await seedUser();
+    await seedCategory();
     await seedProduct();
   } catch (err) {
     console.error("Seed failed:", err);
