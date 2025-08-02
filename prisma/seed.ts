@@ -1,5 +1,7 @@
-import { hashPassword } from "@/app/lib/brypt/password-utils";
-import prisma from "@/lib/prisma";
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
+
+const prisma = new PrismaClient();
 
 async function seedUser() {
   const user = await prisma.user.upsert({
@@ -9,7 +11,10 @@ async function seedUser() {
       name: "Victor Moraes",
       username: "victormoraes",
       email: "svart@aiecommerce.com",
-      password: await hashPassword(process.env.SAMPLE_USER_PASSWORD as string),
+      password: await bcrypt.hash(
+        process.env.SAMPLE_USER_PASSWORD as string,
+        10,
+      ),
     },
   });
 
@@ -17,6 +22,16 @@ async function seedUser() {
 }
 
 export async function main() {
+  console.log("hello")
   await seedUser();
 }
 
+main()
+  .then(async () => {
+    await prisma.$disconnect()
+  })
+  .catch(async (e) => {
+    console.error(e)
+    await prisma.$disconnect()
+    process.exit(1)
+  })

@@ -8,11 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "prisma": {
-    "seed": "ts-node -r tsconfig-paths/register --compiler-options {\"module\":\"esnext\"} prisma/seed.ts"
-  },
   "dependencies": {
     "@prisma/client": "^6.13.0",
+    "@prisma/internals": "^6.13.0",
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "@types/bcrypt": "^6.0.0",
