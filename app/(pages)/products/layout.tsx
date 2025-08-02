@@ -15,6 +15,7 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import SearchBar from "./(components)/search";
 
 export default function ProductsLayout({ children }: { children: React.ReactNode }) {
   const categories = [
@@ -69,17 +70,7 @@ export default function ProductsLayout({ children }: { children: React.ReactNode
               </a>
             </div>
 
-            {/* Search */}
-            <div className="flex-1 max-w-md mx-4 md:mx-8">
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
-                <Input
-                  type="text"
-                  placeholder="Search products..."
-                  className="pl-12 pr-4 py-3 text-base rounded-full border-2 border-blue-200 focus:border-blue-500 dark:border-slate-600 dark:focus:border-blue-400"
-                />
-              </div>
-            </div>
+            <SearchBar></SearchBar>
 
             {/* Icons */}
             <div className="flex items-center space-x-2">
