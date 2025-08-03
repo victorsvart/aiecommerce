@@ -18,7 +18,7 @@ export default function SearchBar() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (query == '') {
+    if (query == "") {
       router.push("/products");
       return;
     }
@@ -34,7 +34,7 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="flex-1 max-w-md mx-4 md:mx-8">
+    <div className="w-full">
       <div className="relative">
         <form onSubmit={handleSubmit}>
           <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
