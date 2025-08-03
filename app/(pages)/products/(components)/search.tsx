@@ -18,6 +18,11 @@ export default function SearchBar() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (query == '') {
+      router.push("/products");
+      return;
+    }
+
     startTransition(async () => {
       const aiResponse = await searchAI(query);
       setResult(aiResponse);
