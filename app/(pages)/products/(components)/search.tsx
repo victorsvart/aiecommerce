@@ -3,9 +3,11 @@
 import { searchAI } from "@/app/actions/openai/searchAI";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 
 export default function SearchBar() {
+  const router = useRouter();
   const [query, setQuery] = useState("");
   const [result, setResult] = useState<{
     response: string;
@@ -19,6 +21,10 @@ export default function SearchBar() {
     startTransition(async () => {
       const aiResponse = await searchAI(query);
       setResult(aiResponse);
+
+      if (!result?.isError) {
+        router.push(aiResponse.response);
+      }
     });
   };
 
@@ -38,15 +44,11 @@ export default function SearchBar() {
       </div>
       {isPending ? (
         <p className="text-sm text-slate-500 mt-2">Thinking...</p>
-      ) : result ? (
-        <p
-          className={`text-sm mt-2 ${
-            result.isError ? "text-red-500" : "text-slate-700"
-          }`}
-        >
-          {result.response}
-        </p>
-      ) : null}{" "}
+      ) : null}
+
+      {result?.isError ? (
+        <p className="text-sm text-red-500 mt-2">{result.response}</p>
+      ) : null}
     </div>
   );
 }
