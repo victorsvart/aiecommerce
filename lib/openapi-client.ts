@@ -1,5 +1,7 @@
 import OpenAI from "openai";
 import type { ChatCompletionMessageParam } from "openai/resources/chat";
+import fs from "fs";
+import path from "path";
 
 export class OpenAiClient {
   client: OpenAI;
@@ -8,8 +10,17 @@ export class OpenAiClient {
 
   constructor() {
     this.client = new OpenAI({ apiKey: process.env.OPEN_API_KEY });
-    this.initialSystemPrompt =
-      process.env.OPENAI_SYSTEM_PROMPT || "You are a helpful assistant.";
+    this.initialSystemPrompt = this.loadInitialSystemPrompt();
+  }
+
+  private loadInitialSystemPrompt() {
+    try {
+      const promptPath = path.join(process.cwd(), "prompt/initial_prompt.md");
+      return fs.readFileSync(promptPath, "utf8");
+    } catch (e) {
+      console.error("Failed to load initial system prompt", e);
+      return "";
+    }
   }
 
   private createCacheKey(
