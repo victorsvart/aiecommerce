@@ -7,20 +7,20 @@ import ProductFilters from "./(components)/product-filter";
 import ProductList from "./(components)/product-list";
 
 interface ProductsPageProps {
-  searchParams?: { [key: string]: string | string[] | undefined };
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
-  // hack to get searchParams from url. Next bitches about this all the time and idk why
-  searchParams = await searchParams;
-    const page = parseInt((searchParams?.page as string) || "1", 10);
+  // Get searchParams from the promise
+  const params = await searchParams;
+  const page = parseInt((params?.page as string) || "1", 10);
 
   const filters: Filters = {
-    categories: parseNumberArray(searchParams?.categories),
-    brands: parseStringArray(searchParams?.brands),
-    priceMin: Number(searchParams?.min ?? 0),
-    priceMax: Number(searchParams?.max ?? 1000),
-    sortBy: (searchParams?.sortBy as string) || "featured",
+    categories: parseNumberArray(params?.categories),
+    brands: parseStringArray(params?.brands),
+    priceMin: Number(params?.min ?? 0),
+    priceMax: Number(params?.max ?? 1000),
+    sortBy: (params?.sortBy as string) || "featured",
     page,
     limit: 12,
   };

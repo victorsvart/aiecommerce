@@ -53,7 +53,7 @@ export default function ProductFilters({ categories, brands }: ProductFiltersPro
     params.set("page", "1");
 
     router.push(`/products?${params.toString()}`);
-  }, [selectedCategories, selectedBrands, priceRange, sortBy]);
+  }, [selectedCategories, selectedBrands, priceRange, sortBy, router]);
 
   const toggleCategory = (id: number) =>
     setSelectedCategories((prev) =>

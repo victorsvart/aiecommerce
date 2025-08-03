@@ -64,6 +64,7 @@ async function seedProduct() {
 
 async function seedUser() {
   try {
+    // Create regular user
     const user = await prisma.user.upsert({
       where: { email: "svart@aiecommerce.com" },
       update: {},
@@ -75,10 +76,29 @@ async function seedUser() {
           process.env.SAMPLE_USER_PASSWORD as string,
           10,
         ),
+        role: "USER",
       },
     });
 
     console.log(`Sample user ${user.name} created or already exists!`);
+
+    // Create admin user
+    const admin = await prisma.user.upsert({
+      where: { email: "admin@aiecommerce.com" },
+      update: {},
+      create: {
+        name: "Admin User",
+        username: "adminuser",
+        email: "admin@aiecommerce.com",
+        password: await bcrypt.hash(
+          process.env.SAMPLE_USER_PASSWORD as string,
+          10,
+        ),
+        role: "ADMIN",
+      },
+    });
+
+    console.log(`Admin user ${admin.name} created or already exists!`);
   } catch (err) {
     throw err;
   }

@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import SearchBar from "./(components)/search";
+import Link from "next/link";
 
 export default function ProductsLayout({
   children,
@@ -56,14 +57,14 @@ export default function ProductsLayout({
           <div className="h-16 flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <MobileNav />
-              <a href="/" className="flex items-center gap-2">
+              <Link href="/" className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                   <Sparkles className="w-5 h-5 text-white" />
                 </div>
                 <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   AiECommerce
                 </span>
-              </a>
+              </Link>
             </div>
 
             <SearchBar></SearchBar>
@@ -124,19 +125,19 @@ export default function ProductsLayout({
       {/* Breadcrumb */}
       <div className="container mx-auto px-4 py-3 border-b bg-white/50 dark:bg-slate-800/50">
         <nav className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
-          <a
+          <Link
             href="/"
             className="hover:text-slate-700 dark:hover:text-white transition-colors"
           >
             Home
-          </a>
+          </Link>
           <span>/</span>
-          <a
+          <Link
             href="/products"
             className="hover:text-slate-700 dark:hover:text-white transition-colors"
           >
             Products
-          </a>
+          </Link>
         </nav>
       </div>
 

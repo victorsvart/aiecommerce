@@ -87,7 +87,7 @@ export default function Home() {
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
               <Input
                 type="text"
-                placeholder="Ask AI: 'Find me noise-canceling headphones under $200'"
+                placeholder="Ask AI: &quot;Find me noise-canceling headphones under $200&quot;"
                 className="pl-12 pr-16 py-4 text-lg rounded-full border-2 border-blue-200 focus:border-blue-500 dark:border-slate-600 dark:focus:border-blue-400"
               />
               <Button className="absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
@@ -99,8 +99,8 @@ export default function Home() {
             <Alert className="mt-4 border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-950">
               <Zap className="h-4 w-4" />
               <AlertDescription>
-                Try asking: "Best laptop for college students" or "Eco-friendly
-                kitchen gadgets"
+                Try asking: &quot;Best laptop for college students&quot; or &quot;Eco-friendly
+                kitchen gadgets&quot;
               </AlertDescription>
             </Alert>
           </div>

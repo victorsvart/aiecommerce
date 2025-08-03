@@ -41,8 +41,8 @@ export default function SignupPage() {
               <Alert variant="destructive">
                 <AlertCircleIcon />
                 <AlertDescription>
-                  {state?.errors?.name?.map((err) => (
-                    <p>{err}</p>
+                  {state?.errors?.name?.map((err: string, index: number) => (
+                    <p key={`name-error-${index}`}>{err}</p>
                   ))}
                 </AlertDescription>
               </Alert>
@@ -61,8 +61,8 @@ export default function SignupPage() {
               <Alert variant="destructive">
                 <AlertCircleIcon />
                 <AlertDescription>
-                  {state?.errors?.username?.map((err) => (
-                    <p>{err}</p>
+                  {state?.errors?.username?.map((err: string, index: number) => (
+                    <p key={`username-error-${index}`}>{err}</p>
                   ))}
                 </AlertDescription>
               </Alert>
@@ -81,8 +81,8 @@ export default function SignupPage() {
               <Alert variant="destructive">
                 <AlertCircleIcon />
                 <AlertDescription>
-                  {state?.errors?.email?.map((err) => (
-                    <p>{err}</p>
+                  {state?.errors?.email?.map((err: string, index: number) => (
+                    <p key={`email-error-${index}`}>{err}</p>
                   ))}
                 </AlertDescription>
               </Alert>
@@ -109,8 +109,8 @@ export default function SignupPage() {
               <Alert variant="destructive">
                 <AlertCircleIcon />
                 <AlertDescription>
-                  {state?.errors?.password?.map((err) => (
-                    <p>{err}</p>
+                  {state?.errors?.password?.map((err: string, index: number) => (
+                    <p key={`password-error-${index}`}>{err}</p>
                   ))}
                 </AlertDescription>
               </Alert>
