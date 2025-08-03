@@ -2,31 +2,31 @@ import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { decrypt } from "./app/lib/session/session";
 
-const protectedRoutes = ["/products"];
-const publicRoutes = ["/auth/signin", "/auth/signup", "/"];
+const publicRoutes = ["/", "/auth/signin", "/auth/signup", "/products"];
 
-// copied from nextjs's docs for fast dev | TODO: barely reviewed, should check it out again
+function isPublicPath(path: string): boolean {
+  return publicRoutes.some(
+    (publicRoute) => path === publicRoute || path.startsWith(publicRoute + "/"),
+  );
+}
+
 export default async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
-  const isProtectedRoute = protectedRoutes.includes(path);
-  const isPublicRoute = publicRoutes.includes(path);
+  const isPublic = isPublicPath(path);
 
   const cookie = (await cookies()).get("session")?.value;
-  const session = (await decrypt(cookie));
-  if (process.env.NODE_ENV == "development") {
+  const session = await decrypt(cookie);
+
+  if (process.env.NODE_ENV === "development") {
     console.log("session", session);
   }
 
-
-  if (isProtectedRoute && !session?.payload?.userId) {
-    return NextResponse.redirect(new URL("auth/signin", req.nextUrl));
+  if (!isPublic && !session?.payload?.userId) {
+    return NextResponse.redirect(new URL("/auth/signin", req.nextUrl));
   }
 
-  if (
-    isPublicRoute &&
-    session?.payload?.userId &&
-    !req.nextUrl.pathname.startsWith("/")
-  ) {
+  const isAuthPage = path.startsWith("/auth/");
+  if (isAuthPage && session?.payload?.userId) {
     return NextResponse.redirect(new URL("/", req.nextUrl));
   }
 
@@ -34,5 +34,8 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
+  matcher: [
+    "/((?!api/|_next/|.*\\.(?:png|jpg|jpeg|svg|webp|ico|json)$).*)",
+  ],
 };
+

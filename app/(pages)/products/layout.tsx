@@ -1,13 +1,5 @@
-import {
-  Search,
-  ShoppingCart,
-  User,
-  Heart,
-  Menu,
-  Sparkles,
-} from "lucide-react";
+import { ShoppingCart, User, Heart, Menu, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import {
   NavigationMenu,
@@ -17,7 +9,11 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import SearchBar from "./(components)/search";
 
-export default function ProductsLayout({ children }: { children: React.ReactNode }) {
+export default function ProductsLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const categories = [
     { name: "Electronics", href: "/products/electronics" },
     { name: "Clothing", href: "/products/clothing" },
@@ -128,11 +124,17 @@ export default function ProductsLayout({ children }: { children: React.ReactNode
       {/* Breadcrumb */}
       <div className="container mx-auto px-4 py-3 border-b bg-white/50 dark:bg-slate-800/50">
         <nav className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
-          <a href="/" className="hover:text-slate-700 dark:hover:text-white transition-colors">
+          <a
+            href="/"
+            className="hover:text-slate-700 dark:hover:text-white transition-colors"
+          >
             Home
           </a>
           <span>/</span>
-          <a href="/products" className="hover:text-slate-700 dark:hover:text-white transition-colors">
+          <a
+            href="/products"
+            className="hover:text-slate-700 dark:hover:text-white transition-colors"
+          >
             Products
           </a>
         </nav>
@@ -161,28 +163,98 @@ export default function ProductsLayout({ children }: { children: React.ReactNode
             <div>
               <h3 className="font-semibold mb-4">Customer Service</h3>
               <ul className="space-y-2 text-sm text-slate-400">
-                <li><a href="/help" className="hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="/returns" className="hover:text-white transition-colors">Returns</a></li>
-                <li><a href="/shipping" className="hover:text-white transition-colors">Shipping Info</a></li>
-                <li><a href="/contact" className="hover:text-white transition-colors">Contact Us</a></li>
+                <li>
+                  <a
+                    href="/help"
+                    className="hover:text-white transition-colors"
+                  >
+                    Help Center
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/returns"
+                    className="hover:text-white transition-colors"
+                  >
+                    Returns
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/shipping"
+                    className="hover:text-white transition-colors"
+                  >
+                    Shipping Info
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/contact"
+                    className="hover:text-white transition-colors"
+                  >
+                    Contact Us
+                  </a>
+                </li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Account</h3>
               <ul className="space-y-2 text-sm text-slate-400">
-                <li><a href="/account" className="hover:text-white transition-colors">My Account</a></li>
-                <li><a href="/orders" className="hover:text-white transition-colors">Order History</a></li>
-                <li><a href="/wishlist" className="hover:text-white transition-colors">Wishlist</a></li>
+                <li>
+                  <a
+                    href="/account"
+                    className="hover:text-white transition-colors"
+                  >
+                    My Account
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/orders"
+                    className="hover:text-white transition-colors"
+                  >
+                    Order History
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/wishlist"
+                    className="hover:text-white transition-colors"
+                  >
+                    Wishlist
+                  </a>
+                </li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Company</h3>
               <ul className="space-y-2 text-sm text-slate-400">
-                <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
-                <li><a href="/careers" className="hover:text-white transition-colors">Careers</a></li>
-                <li><a href="/press" className="hover:text-white transition-colors">Press</a></li>
+                <li>
+                  <a
+                    href="/about"
+                    className="hover:text-white transition-colors"
+                  >
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/careers"
+                    className="hover:text-white transition-colors"
+                  >
+                    Careers
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/press"
+                    className="hover:text-white transition-colors"
+                  >
+                    Press
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
@@ -195,4 +267,3 @@ export default function ProductsLayout({ children }: { children: React.ReactNode
     </div>
   );
 }
-
