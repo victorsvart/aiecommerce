@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+
 import { Trash2, Plus, Minus, ShoppingCart } from "lucide-react";
 import { getCartAction, updateCartItemQuantityAction, removeFromCartAction, getCartTotalAction } from "@/app/actions/cart/cart";
 import { CartWithItems } from "@/app/lib/store/cart-store";
+import Link from "next/link";
 
 interface CartItemsProps {
   onUpdate?: () => void;
@@ -157,12 +158,16 @@ export function CartItems({ onUpdate, showSummary = true }: CartItemsProps) {
           </div>
           
           <div className="space-y-2">
-            <Button className="w-full" size="lg">
-              Proceed to Checkout
-            </Button>
-            <Button variant="outline" className="w-full">
-              Continue Shopping
-            </Button>
+            <Link href="/checkout">
+              <Button className="w-full" size="lg">
+                Proceed to Checkout
+              </Button>
+            </Link>
+            <Link href="/products">
+              <Button variant="outline" className="w-full">
+                Continue Shopping
+              </Button>
+            </Link>
           </div>
         </div>
       )}

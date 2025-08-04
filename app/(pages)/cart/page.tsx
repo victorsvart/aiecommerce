@@ -96,9 +96,11 @@ export default async function CartPage() {
                       </div>
                       
                       <div className="space-y-2 pt-4">
-                        <Button className="w-full" size="lg">
-                          Proceed to Checkout
-                        </Button>
+                        <Link href="/checkout">
+                          <Button className="w-full" size="lg">
+                            Proceed to Checkout
+                          </Button>
+                        </Link>
                         <Link href="/products">
                           <Button variant="outline" className="w-full">
                             Continue Shopping

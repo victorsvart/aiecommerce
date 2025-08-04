@@ -30,7 +30,7 @@ export async function getOrCreateCart(userId: number): Promise<CartWithItems> {
   let cart = await getCart(userId);
   
   if (!cart) {
-    const newCart = await createCart(userId);
+    await createCart(userId);
     cart = await getCart(userId);
   }
   

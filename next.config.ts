@@ -27,6 +27,10 @@ const nextConfig: NextConfig = {
             key: "X-XSS-Protection",
             value: "1; mode=block",
           },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=31536000; includeSubDomains",
+          },
         ],
       },
     ];
@@ -36,12 +40,21 @@ const nextConfig: NextConfig = {
   images: {
     domains: [],
     formats: ["image/webp", "image/avif"],
+    unoptimized: false,
   },
 
   // Experimental features
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
+
+  // Server external packages for production
+  ...(process.env.NODE_ENV === "production" && {
+    serverExternalPackages: ["@prisma/client"],
+  }),
+
+  // Output configuration for Vercel
+  output: "standalone",
 };
 
 export default nextConfig;

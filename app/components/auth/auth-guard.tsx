@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Lock, ShoppingCart } from "lucide-react";
+import { Lock } from "lucide-react";
 import Link from "next/link";
 
 interface AuthGuardProps {
@@ -15,14 +15,13 @@ interface AuthGuardProps {
 
 export function AuthGuard({ children, fallback, redirectTo = "/auth/signin" }: AuthGuardProps) {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-  const router = useRouter();
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
         const response = await fetch("/api/auth/me");
         setIsAuthenticated(response.ok);
-      } catch (error) {
+      } catch {
         setIsAuthenticated(false);
       }
     };

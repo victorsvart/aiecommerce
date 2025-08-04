@@ -64,10 +64,10 @@ export default function SearchBar() {
             });
           }
         }
-      } catch (error) {
-        console.error('Search error:', error);
+      } catch {
+        console.error('Search error: An error occurred');
         setResult({
-          response: error instanceof Error ? error.message : "An error occurred while processing your request. Please try again.",
+          response: "An error occurred while processing your request. Please try again.",
           isError: true
         });
       }
