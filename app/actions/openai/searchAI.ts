@@ -1,18 +1,10 @@
 "use server";
 
-import { isAuthenticated } from "@/app/lib/session/session";
 import { OpenAiClient } from "@/lib/openapi-client";
 
 export async function searchAI(
   query: string,
 ): Promise<{ response: string; isError: boolean }> {
-  if (!(await isAuthenticated())) {
-    return {
-      response: "You must be signed in to use this feature.",
-      isError: true,
-    };
-  }
-
   const client = new OpenAiClient();
 
   try {

@@ -10,7 +10,6 @@ import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
   Sparkles,
-  ShoppingCart,
   Zap,
   Star,
   TrendingUp,
@@ -22,6 +21,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import SearchBar from "./(pages)/products/(components)/search";
+import { CartIcon } from "@/app/components/cart/cart-icon";
 
 export default function Home() {
   return (
@@ -56,10 +56,7 @@ export default function Home() {
             >
               About
             </a>
-            <Button variant="outline" size="sm">
-              <ShoppingCart className="w-4 h-4 mr-2" />
-              Cart (0)
-            </Button>
+            <CartIcon />
           </nav>
         </div>
       </header>
@@ -95,7 +92,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col mt-5 sm:flex-row gap-4 justify-center items-center">
           <Button
             size="lg"
             className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8"

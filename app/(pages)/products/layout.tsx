@@ -1,6 +1,5 @@
-import { ShoppingCart, User, Heart, Menu, Sparkles } from "lucide-react";
+import { User, Heart, Menu, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -9,6 +8,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import SearchBar from "./(components)/search";
 import Link from "next/link";
+import { CartIcon } from "@/app/components/cart/cart-icon";
 
 export default function ProductsLayout({
   children,
@@ -77,12 +77,7 @@ export default function ProductsLayout({
               <Button variant="ghost" size="icon">
                 <User className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="relative">
-                <ShoppingCart className="h-5 w-5" />
-                <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center text-xs p-0">
-                  3
-                </Badge>
-              </Button>
+              <CartIcon />
             </div>
           </div>
 

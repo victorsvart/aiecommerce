@@ -21,7 +21,9 @@ export class OpenAiClient {
   private loadInitialSystemPrompt() {
     try {
       const promptPath = path.join(process.cwd(), "prompt/initial_prompt.md");
-      return fs.readFileSync(promptPath, "utf8");
+      const prompt = fs.readFileSync(promptPath, "utf8");
+      console.log('Loaded initial prompt:', prompt.substring(0, 200) + '...');
+      return prompt;
     } catch (e) {
       console.error("Failed to load initial system prompt", e);
       return "";
@@ -55,6 +57,8 @@ export class OpenAiClient {
   }
 
   async createChatCompletion(userMessage: string): Promise<string> {
+    console.log('Creating chat completion for:', userMessage);
+    
     if (!this.checkRateLimit()) {
       throw new Error("Rate limit exceeded. Please try again later.");
     }
@@ -78,6 +82,7 @@ export class OpenAiClient {
     ];
 
     try {
+      console.log('Sending request to OpenAI with messages:', messages);
       const completion = await this.client.chat.completions.create({
         model,
         messages,
@@ -86,6 +91,8 @@ export class OpenAiClient {
       });
 
       const content = completion.choices[0]?.message?.content;
+      console.log('OpenAI response content:', content);
+      
       if (!content) throw new Error("No content returned from OpenAI");
 
       this.cache.set(cacheKey, content);

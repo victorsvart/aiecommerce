@@ -6,6 +6,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Grid2X2, List } from "lucide-react";
+import { AddToCartButton } from "@/app/components/cart/add-to-cart-button";
 
 interface ProductListProps {
   products: Product[];
@@ -49,6 +50,7 @@ export default function ProductList({
         <h3 className="text-lg font-semibold tracking-tight">{product.name}</h3>
         <p className="text-sm text-muted-foreground">{product.brand}</p>
         <p className="text-base font-medium text-primary">${product.price}</p>
+        <AddToCartButton productId={product.id} />
       </CardContent>
     </Card>
   );
