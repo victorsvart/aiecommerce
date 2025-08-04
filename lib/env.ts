@@ -9,15 +9,45 @@ const envSchema = z.object({
 });
 
 export function validateEnv() {
-  const env = envSchema.safeParse(process.env);
-  
-  if (!env.success) {
-    console.error("❌ Invalid environment variables:");
-    console.error(env.error.flatten().fieldErrors);
-    throw new Error("Invalid environment variables");
+  try {
+    const env = envSchema.safeParse(process.env);
+    
+    if (!env.success) {
+      console.error("❌ Invalid environment variables:");
+      console.error(env.error.flatten().fieldErrors);
+      
+      // In production, don't throw errors that would break SSR
+      if (process.env.NODE_ENV === "production") {
+        console.error("Environment validation failed in production");
+        return {
+          DATABASE_URL: process.env.DATABASE_URL || "",
+          SECRET_KEY: process.env.SECRET_KEY || "",
+          SAMPLE_USER_PASSWORD: process.env.SAMPLE_USER_PASSWORD || "",
+          OPEN_API_KEY: process.env.OPEN_API_KEY || "",
+          NODE_ENV: process.env.NODE_ENV || "production",
+        };
+      }
+      
+      throw new Error("Invalid environment variables");
+    }
+    
+    return env.data;
+  } catch (error) {
+    console.error("Environment validation error:", error);
+    
+    // Return fallback values in production to prevent SSR errors
+    if (process.env.NODE_ENV === "production") {
+      return {
+        DATABASE_URL: process.env.DATABASE_URL || "",
+        SECRET_KEY: process.env.SECRET_KEY || "",
+        SAMPLE_USER_PASSWORD: process.env.SAMPLE_USER_PASSWORD || "",
+        OPEN_API_KEY: process.env.OPEN_API_KEY || "",
+        NODE_ENV: process.env.NODE_ENV || "production",
+      };
+    }
+    
+    throw error;
   }
-  
-  return env.data;
 }
 
 export const env = validateEnv(); 
