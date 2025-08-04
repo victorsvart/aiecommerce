@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: "Admin dashboard for managing the e-commerce platform",
 };
 
+// Force dynamic rendering for admin pages
+export const dynamic = 'force-dynamic';
+
 export default async function AdminDashboard() {
   // Get basic statistics
   const [totalProducts, totalCategories, totalUsers] = await Promise.all([

@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   description: "View and manage your shopping cart",
 };
 
+// Force dynamic rendering for cart page
+export const dynamic = 'force-dynamic';
+
 export default async function CartPage() {
   const cart = await getCartAction();
   const total = await getCartTotalAction();

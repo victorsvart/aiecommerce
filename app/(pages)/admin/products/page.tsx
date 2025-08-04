@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   description: "Manage products in the admin panel",
 };
 
+// Force dynamic rendering for admin pages
+export const dynamic = 'force-dynamic';
+
 interface ProductsPageProps {
   searchParams: Promise<{
     page?: string;

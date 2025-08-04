@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   description: "Complete your purchase",
 };
 
+// Force dynamic rendering for checkout page
+export const dynamic = 'force-dynamic';
+
 export default async function CheckoutPage() {
   const cart = await getCartAction();
   const total = await getCartTotalAction();
