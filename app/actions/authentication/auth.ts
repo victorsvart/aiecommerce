@@ -5,7 +5,6 @@ import { SignUpForm, SignupFormState } from "@/app/lib/definitions/signup-form";
 import { createSession } from "@/app/lib/session/session";
 import { createUser, getUserByUsername } from "@/app/lib/store/user-store";
 import { redirect } from "next/navigation";
-import z from "zod";
 
 const authCommonError: string = "Invalid username or password"; // for ambiguity
 
@@ -16,7 +15,7 @@ export async function signIn(_state: SigninFormState, formData: FormData) {
   });
 
   if (!result.success) {
-    const errors = z.flattenError(result.error).fieldErrors;
+    const errors = result.error.flatten().fieldErrors;
     return { errors };
   }
 
@@ -46,7 +45,7 @@ export async function signUp(_state: SignupFormState, formData: FormData) {
   });
 
   if (!result.success) {
-    const errors = z.flattenError(result.error).fieldErrors;
+    const errors = result.error.flatten().fieldErrors;
     return { errors };
   }
 

@@ -18,23 +18,64 @@ export default function SearchBar() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (query == '') {
+    if (query == "") {
       router.push("/products");
       return;
     }
 
     startTransition(async () => {
-      const aiResponse = await searchAI(query);
-      setResult(aiResponse);
+      try {
+        console.log('Searching for:', query);
+        const aiResponse = await searchAI(query);
+        console.log('AI Response received:', aiResponse);
+        setResult(aiResponse);
 
-      if (!result?.isError) {
-        router.push(aiResponse.response);
+        if (!aiResponse.isError) {
+          // Clean up the response - remove backticks and extra whitespace
+          let cleanResponse = aiResponse.response.trim();
+          
+          // Remove backticks if present
+          if (cleanResponse.startsWith('`') && cleanResponse.endsWith('`')) {
+            cleanResponse = cleanResponse.slice(1, -1);
+          }
+          
+          // Remove quotes if present
+          if ((cleanResponse.startsWith('"') && cleanResponse.endsWith('"')) ||
+              (cleanResponse.startsWith("'") && cleanResponse.endsWith("'"))) {
+            cleanResponse = cleanResponse.slice(1, -1);
+          }
+          
+          // Ensure it starts with /products
+          if (!cleanResponse.startsWith('/products')) {
+            cleanResponse = `/products${cleanResponse}`;
+          }
+          
+          // Validate the URL format
+          try {
+            new URL(cleanResponse, window.location.origin);
+            console.log('AI Response:', aiResponse.response);
+            console.log('Clean Response:', cleanResponse);
+            router.push(cleanResponse);
+          } catch (error) {
+            console.error('Invalid URL generated:', cleanResponse);
+            setResult({
+              response: "Sorry, I couldn't understand your request. Please try again with different words.",
+              isError: true
+            });
+          }
+        }
+      } catch {
+        console.error('Search error: An error occurred');
+        setResult({
+          response: "An error occurred while processing your request. Please try again.",
+          isError: true
+        });
       }
     });
   };
 
   return (
-    <div className="flex-1 max-w-md mx-4 md:mx-8">
+    <div className="w-full">
       <div className="relative">
         <form onSubmit={handleSubmit}>
           <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
@@ -42,7 +83,7 @@ export default function SearchBar() {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Try asking AiE to search for furninure below 200$!"
+            placeholder="Try: 'smart home devices', 'accessories under 100', 'wearables'"
             className="pl-12 pr-4 py-3 text-base rounded-full border-2 border-blue-200 focus:border-blue-500 dark:border-slate-600 dark:focus:border-blue-400"
           />
         </form>
